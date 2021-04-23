@@ -21,5 +21,5 @@ from gateway.views import MainGatewayView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'/api/.*', MainGatewayView.as_view())
+    url(r'api/.*', MainGatewayView.as_view())
 ]

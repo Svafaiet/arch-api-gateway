@@ -14,10 +14,10 @@ class MainGatewayView(APIView):
 
     def redirect(self, request):
         paths = request.path.split('/')
-        if len(paths) < 2:
+        if len(paths) < 2 or paths[1] != "api":
             raise ValidationError('incorrect path format')
         api = API.objects.filter(name=paths[2])
-        if api.exists():
+        if api.count() != 1:
             raise ValidationError('multiple api found for this service name')
         api = api[0]
         if api.failure_strike >= 3:
